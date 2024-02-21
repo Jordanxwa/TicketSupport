@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import {FaSignInAlt} from 'react-icons/fa'
 import {toast} from 'react-toastify'
+import {useSelector, useDispatch} from 'react-redux'
+import {login} from'../features/auth/authSlice'
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -11,12 +13,28 @@ function Login() {
   // Destructure
   const { name, email, password, password2 } = formData
 
+    // Init dispatch
+    const dispatch = useDispatch()
+
+    // Bring in any global state into component
+    const {user, isLoading, isSuccess, message} = useSelector(state => state.auth)
+
   // set form data to prev state, select name by the value
   const onChange = (e) => {
   setFormData((prevState) => ({
     ...prevState,
     [e.target.name]: e.target.value,
     }))
+  }
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+
+    const userData = {
+      email,
+      password,
+    }
+    dispatch(login(userData))
   }
 
   return (
@@ -28,7 +46,7 @@ function Login() {
       <p>Please log in to get support</p>
     </section>
     <section className="form">
-      <form>
+      <form onSubmit={onSubmit}>
        
         <div className="form-group">
           <input type="email" id="email" name='email' className="form-control" value={email}
@@ -39,7 +57,9 @@ function Login() {
           onChange={onChange} placeholder='Enter your password' required />
         </div>
      
-        <div className="form-group"><button className="btn btn-block">Submit</button></div>
+        <div className="form-group">
+          <button className="btn btn-block" >Submit</button>
+        </div>
       </form>
     </section>
     </>
