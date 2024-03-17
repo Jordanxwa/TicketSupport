@@ -2,10 +2,11 @@ import {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getTickets, reset} from "../features/tickets/ticketSlice"
 import Spinner from "../components/Spinner"
-import backButton, { BackButton } from '../components/BackButton'
+import { BackButton } from '../components/BackButton'
 import TicketItem from "../components/TicketItem"
 
 function Tickets() {
+  // Deconstruct tickets from state
 const {tickets, isLoading, isSuccess} = useSelector((state) => state.tickets)
 
 // Init dispatch
@@ -38,6 +39,7 @@ if(isLoading){
         <div>Status</div>
         <div></div>
       </div>
+      {/* loop through tickets and display item for each one */}
       {tickets.map((ticket) => (
         <TicketItem key={ticket._id} ticket={ticket} />
       ))}
