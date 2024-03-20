@@ -55,10 +55,10 @@ const addNote = asyncHandler(async (req, res) => {
     text: req.body.text,
     isStaff: false,
     ticket: req.params.ticketId,
-    user: req.user.ticketId,
+    user: req.user.id,
   });
 
-  res.status(200).json(notes);
+  res.status(200).json(note);
 });
 
 module.exports = { getNotes, addNote };
