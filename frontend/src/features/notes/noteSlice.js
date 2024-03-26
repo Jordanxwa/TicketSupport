@@ -11,7 +11,7 @@ const initialState = {
 
 // Get ticket notes
 export const getNotes = createAsyncThunk(
-  'tickets/get',
+  'notes/get',
   async (ticketId, thunkAPI) => {
     try {
       // Get token from auth state
