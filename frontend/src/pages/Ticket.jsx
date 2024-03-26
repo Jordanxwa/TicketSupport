@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getTicket, closeTicket} from '../features/tickets/ticketSlice'
-import {getNotes, reset as noteReset} from '../features/notes/noteSlice'
+import {getNotes, createNote, reset as noteReset} from '../features/notes/noteSlice'
 import {toast} from 'react-toastify'
 import Modal from 'react-modal'
 import {FaPlus} from 'react-icons/fa'
@@ -65,7 +65,7 @@ function Ticket() {
   // Create Note Submit
   const onNoteSubmit = (e) => {
     e.preventDefault()
-    console.log('Submit')
+    dispatch(createNote({noteText, ticketId}))
     closeModal()
   }
 
@@ -122,7 +122,7 @@ function Ticket() {
       </form>
     </Modal>
 
-    
+    {/* Map through notes in selector and post by Id */}
       {notes.map((note) => (
         <NoteItem key={note._id} note={note}/>
       ))}
