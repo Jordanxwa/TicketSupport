@@ -16,9 +16,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.json({ test: 'JSON data test' });
-});
+// app.get('/', (req, res) => {
+//   res.json({ test: 'JSON data test' });
+// });
 
 // Routes
 app.use('/api/users', require('./routes/userRoutes'));
