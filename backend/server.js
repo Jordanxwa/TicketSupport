@@ -5,7 +5,7 @@ const dotenv = require('dotenv').config();
 const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 // Calling port # from env file
-const PORT = process.env.PORT || 8000;
+const port = process.env.PORT || 4000;
 
 // Connect to db
 connectDB();
@@ -35,4 +35,4 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(errorHandler);
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(port, () => console.log(`Server started on port ${port}`));
